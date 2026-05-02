@@ -59,7 +59,7 @@ st.sidebar.header("1. Vos critères")
 adresse_utilisateur = st.sidebar.text_input("Votre adresse complète :", placeholder="ex: 2 avenue Salvador Allende, Torcy")
 
 # Création d'une liste multisélection (plus pratique qu'une longue liste de checkboxes)
-types_postes_dispos = df['Nature'].dropna().unique().sort_values().tolist()
+types_postes_dispos = sorted(df['Nature'].dropna().unique().tolist())
 types_postes_dispos_defaut = [
     "ECEL - Enseignant classe élémentaire",
     "ECMA - Enseignant classe préélémentaire",
