@@ -18,7 +18,7 @@ def obtenir_coordonnees(adresse, tentative=1):
         if location:
             return location.latitude, location.longitude
         return None, None
-    except GeocoderTimedOut:
+    except:
         if tentative <= 3:
             time.sleep(2)
             return obtenir_coordonnees(adresse, tentative + 1)
@@ -82,7 +82,7 @@ if st.sidebar.button("🚀 Lancer le calcul", type="primary"):
             lat_domicile, lon_domicile = obtenir_coordonnees(adresse_utilisateur)
         
         if lat_domicile is None:
-            st.error("❌ Adresse introuvable. Veuillez vérifier votre saisie.")
+            st.error("❌ Adresse introuvable, vérifiez-la. Si l'adresse est correcte, l'application peut nécessiter une intervention du mari de François, envoyez-lui un message.")
         else:
             st.success(f"📍 Adresse trouvée ! Coordonnées : {lat_domicile}, {lon_domicile}")
             
