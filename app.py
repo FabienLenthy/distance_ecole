@@ -10,14 +10,6 @@ st.set_page_config(page_title="Calcul Distances Ecoles", layout="wide")
 st.title("🚗 Calculateur de distance pour mutations")
 
 # --- FONCTIONS CACHÉES POUR OPTIMISER LES PERFORMANCES ---
-@st.cache_data
-def charger_donnees(uploaded_file):
-    """Charge le fichier CSV ou Excel de l'utilisateur."""
-    if uploaded_file.name.endswith('.csv'):
-        return pd.read_csv(uploaded_file)
-    else:
-        return pd.read_excel(uploaded_file)
-
 def obtenir_coordonnees(adresse, tentative=1):
     """Géocode l'adresse saisie par l'utilisateur."""
     geolocator = Nominatim(user_agent="mon_app_streamit_mutations")
@@ -60,7 +52,7 @@ def extraire_lat_lon(coords_str):
 # --- INTERFACE UTILISATEUR ---
 
 # 1. Chargement du fichier
-df = charger_donnees("data/Position_Ecoles.csv")
+df = pd.read_csv("data/Position_Ecoles.csv")
     
 # 2. Options de filtrage et saisie
 st.sidebar.header("1. Vos critères")
